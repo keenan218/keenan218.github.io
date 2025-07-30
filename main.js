@@ -1,4 +1,21 @@
 
+//* Global params
+
+const galleryImages = [
+  {
+    src: "./assets/gallery/image1.jpg",
+    alt: "Thumbnail Image 1"
+  },
+  {
+    src: "./assets/gallery/image2.jpg",
+    alt: "Thumbnail Image 2"
+  },
+  {
+    src: "./assets/gallery/image3.jpg",
+    alt: "Thumbnail Image 3"
+  }
+];
+
 //* Menu toggle functionality
 
 function menuHandler() {
@@ -65,9 +82,45 @@ function clockHandler() {
 
 }
 
+//* Gallery section
+
+function galleryHandler() {
+
+  let mainImage = document.querySelector('#gallery > img');
+  let thumbnails = document.querySelector('#gallery .thumbnails');
+
+  mainImage.src = galleryImages[0].src;
+  mainImage.alt = galleryImages[0].alt;
+
+  galleryImages.forEach(function (image, index) {
+    let thumb = document.createElement('img');
+    thumb.src = image.src;
+    thumb.alt = image.alt;
+    thumb.dataset.arrayIndex = index;
+    thumb.dataset.selected = index === 0 ? true : false;
+
+    thumb.addEventListener('click', function (e) {
+      let selectedIndex = e.target.dataset.arrayIndex;
+      let selectedImage = galleryImages[selectedIndex];
+      mainImage.src = selectedImage.src;
+      mainImage.alt = selectedImage.alt;
+
+      thumbnails.querySelectorAll('img').forEach(function (img) {
+        img.dataset.selected = false; // Reset all thumbnails to not selected
+      })
+      e.target.dataset.selected = true; // Set the clicked thumbnail as selected
+
+    });
+
+    thumbnails.appendChild(thumb);
+  });
+
+}
+
 //* Page load
 
 clockHandler(); // Initialize the clock handler
 menuHandler(); // Initialize the menu handler
+galleryHandler(); // Initialize the gallery handler
 greetingHandler(); // Initialize the greeting handler
 
