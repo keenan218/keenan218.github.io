@@ -30,6 +30,27 @@ function menuHandler() {
 
 }
 
+//? Functions
+
+function abc() {
+
+  function localFunction() {
+  
+    let customerLETLOC = 'John Pork'; //* let = local.
+  
+  }
+  
+  //!! let of the above function is not available outside of this function.
+  var customerVAR = 'John Doe'; //* var is available globally. Only to be used when you intentionally want to make a variable globally available.
+  let customerLET = 'Jane Doe'; //* let is available locally.
+  const customerCONST = 'Jennifer Doe'; //* const is available locally and cannot be changed.
+
+  console.log(customerCONST); //* This will work, as const is available in the local scope.
+  console.log(customerVAR); //* This will work, as var is available globally.
+  console.log(customerLET); //* This will work, as let is available in the local scope
+  console.log(customerLETLOC); //* This will not work, as let is only available in the local scope of the function localFunction.
+}
+
 //* Temperature conversion function
 
 function celsiusToFahr(temperature) {
