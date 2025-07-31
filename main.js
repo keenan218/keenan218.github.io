@@ -265,12 +265,19 @@ function productsHandler() {
 
 }
 
+function footerHandler() {
+  const copyright = '\u00A9';
+  let currentYear = new Date().getFullYear()
+  document.querySelector('footer').textContent = `${copyright} ${currentYear} - All rights reserved`;
+
+}
+
 
 //* Page load
 
 clockHandler(); // Initialize the handler
-menuHandler(); 
+footerHandler()
 galleryHandler(); 
 greetingHandler(); 
+menuHandler(); 
 productsHandler(); 
-
