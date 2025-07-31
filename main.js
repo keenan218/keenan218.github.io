@@ -74,11 +74,11 @@ function menuHandler() {
 function abc() {
 
   function localFunction() {
-  
+
     let customerLETLOC = 'John Pork'; //* let = local.
-  
+
   }
-  
+
   //!! let of the above function is not available outside of this function.
   var customerVAR = 'John Doe'; //* var is available globally. Only to be used when you intentionally want to make a variable globally available.
   let customerLET = 'Jane Doe'; //* let is available locally.
@@ -179,12 +179,13 @@ function galleryHandler() {
 
 //* Products section
 
-function productsHandler() {
-  
+function populateProducts(productList) {
+
   let productSection = document.querySelector('.products-area');
-  
+  productSection.textContent = '';
+
   //* Run through the products array and create HTML Element for each product item
-  products.forEach(function (product, index) {
+  productList.forEach(function (product, index) {
 
     //* Create HTML elements for each product
     let productElm = document.createElement('div');
@@ -230,6 +231,37 @@ function productsHandler() {
     productSection.append(productElm);
 
   }); 
+}
+
+function productsHandler() {
+  
+  let paidProducts = products.filter(function (item) {
+    return item.price > 0; 
+  });
+
+  let freeProducts = products.filter(function (item) {
+    return !item.price || item.price <= 0; 
+  });
+
+  populateProducts(products);
+
+  //* Update product counts in the filter section
+  document.querySelector('.products-filter label[for=all] span.product-amount').textContent = products.length;
+  document.querySelector('.products-filter label[for=paid] span.product-amount').textContent = paidProducts.length;
+  document.querySelector('.products-filter label[for=free] span.product-amount').textContent = freeProducts.length;
+
+  //* Products click handler
+  
+  let productsFilter = document.querySelector('.products-filter');
+  productsFilter.addEventListener('click', function(e){
+    if(e.target.id == 'paid') {
+      populateProducts(paidProducts)
+    } else if (e.target.id == 'free') {
+      populateProducts(freeProducts)
+    } else {
+      populateProducts(products)
+    }
+  })
 
 }
 
