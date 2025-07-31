@@ -59,21 +59,21 @@ const products = [
 
 function menuHandler() {
 
-  document.querySelector('#open-nav-menu').addEventListener('click', function () {
-    document.querySelector('header nav .wrapper').classList.add('nav-open');
-  });
+  document.querySelector('#open-nav-menu').addEventListener('click', () => 
+    document.querySelector('header nav .wrapper').classList.add('nav-open')
+  );
 
-  document.querySelector('#close-nav-menu').addEventListener('click', function () {
-    document.querySelector('header nav .wrapper').classList.remove('nav-open');
-  });
+  document.querySelector('#close-nav-menu').addEventListener('click', () => 
+    document.querySelector('header nav .wrapper').classList.remove('nav-open')
+  );
 
 }
 
 //? Functions
 
-function abc() {
+abc = () => {
 
-  function localFunction() {
+  localFunction = () => {
 
     let customerLETLOC = 'John Pork'; //* let = local.
 
@@ -92,14 +92,14 @@ function abc() {
 
 //* Temperature conversion function
 
-function celsiusToFahr(temperature) {
+celsiusToFahr = (temperature) => {
   let fahr = (temperature * 9 / 5) + 32;
   return fahr;
 }
 
 //* Greeting section
 
-function greetingHandler() {
+greetingHandler = () => {
 
   let currentHour = new Date().getHours();
   let greetingText = currentHour < 12 ? "Good morning!" :
@@ -116,7 +116,7 @@ function greetingHandler() {
   document.querySelector('#greeting').innerHTML = greetingText
   document.querySelector('p#weather').innerHTML = celsiusText;
 
-  document.querySelector('.weather-group').addEventListener('click', function (e) {
+  document.querySelector('.weather-group').addEventListener('click', (e) => {
 
     if (e.target.id == "celsius") {
       document.querySelector('p#weather').innerHTML = celsiusText;
@@ -130,9 +130,9 @@ function greetingHandler() {
 
 //* Local time display
 
-function clockHandler() {
+clockHandler = () => {
 
-  setInterval(function () {
+  setInterval( () => {
     let localTime = new Date();
 
     document.querySelector('span[data-time=hours]').textContent = localTime.getHours().toString().padStart(2, '0');
@@ -144,7 +144,7 @@ function clockHandler() {
 
 //* Gallery section
 
-function galleryHandler() {
+galleryHandler = () => {
 
   let mainImage = document.querySelector('#gallery > img');
   let thumbnails = document.querySelector('#gallery .thumbnails');
@@ -152,22 +152,22 @@ function galleryHandler() {
   mainImage.src = galleryImages[0].src;
   mainImage.alt = galleryImages[0].alt;
 
-  galleryImages.forEach(function (image, index) {
+  galleryImages.forEach((image, index) => {
     let thumb = document.createElement('img');
     thumb.src = image.src;
     thumb.alt = image.alt;
     thumb.dataset.arrayIndex = index;
     thumb.dataset.selected = index === 0 ? true : false;
 
-    thumb.addEventListener('click', function (e) {
+    thumb.addEventListener('click', (e) => {
       let selectedIndex = e.target.dataset.arrayIndex;
       let selectedImage = galleryImages[selectedIndex];
       mainImage.src = selectedImage.src;
       mainImage.alt = selectedImage.alt;
 
-      thumbnails.querySelectorAll('img').forEach(function (img) {
-        img.dataset.selected = false; // Reset all thumbnails to not selected
-      })
+      thumbnails.querySelectorAll('img').forEach( img => img.dataset.selected = false )
+      /* ^ Reset all thumbnails to not selected */
+      
       e.target.dataset.selected = true; // Set the clicked thumbnail as selected
 
     });
@@ -179,13 +179,13 @@ function galleryHandler() {
 
 //* Products section
 
-function populateProducts(productList) {
+populateProducts = (productList) => {
 
   let productSection = document.querySelector('.products-area');
   productSection.textContent = '';
 
   //* Run through the products array and create HTML Element for each product item
-  productList.forEach(function (product, index) {
+  productList.forEach((product, index) => {
 
     //* Create HTML elements for each product
     let productElm = document.createElement('div');
@@ -233,15 +233,11 @@ function populateProducts(productList) {
   }); 
 }
 
-function productsHandler() {
+productsHandler = () => {
   
-  let paidProducts = products.filter(function (item) {
-    return item.price > 0; 
-  });
+  let paidProducts = products.filter( item => item.price > 0 );
 
-  let freeProducts = products.filter(function (item) {
-    return !item.price || item.price <= 0; 
-  });
+  let freeProducts = products.filter( item => !item.price || item.price <= 0 );
 
   populateProducts(products);
 
@@ -253,7 +249,7 @@ function productsHandler() {
   //* Products click handler
   
   let productsFilter = document.querySelector('.products-filter');
-  productsFilter.addEventListener('click', function(e){
+  productsFilter.addEventListener('click', (e) => {
     if(e.target.id == 'paid') {
       populateProducts(paidProducts)
     } else if (e.target.id == 'free') {
@@ -265,7 +261,7 @@ function productsHandler() {
 
 }
 
-function footerHandler() {
+footerHandler = () => {
   const copyright = '\u00A9';
   let currentYear = new Date().getFullYear()
   document.querySelector('footer').textContent = `${copyright} ${currentYear} - All rights reserved`;
