@@ -139,7 +139,9 @@ weatherHandler = () => {
 
         });
 
-      });
+      }).catch((err => {
+        document.querySelector('p#weather').innerHTML = "Unable to retrieve information, please refresh to try again.";
+      }));
   })
 }
 
