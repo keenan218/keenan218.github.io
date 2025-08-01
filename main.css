@@ -83,17 +83,8 @@ header nav {
   justify-content: space-between;
   align-items: center;
 }
-header nav .nav-left-side {
-  display: flex;
-  align-items: center;
-}
-header nav .nav-left-side a {
-  margin-left: 8px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 17px;
-  text-transform: capitalize;
+header nav .open-nav-menu button {
+  float: right;
 }
 header nav .nav-right-side input[type="checkbox"] {
   display: none;
@@ -119,7 +110,6 @@ header nav .wrapper {
 }
 header nav .wrapper.nav-open {
   right: 0;
-  float: right;
 }
 header nav .wrapper ul li + li {
   margin-top: 60px;
