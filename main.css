@@ -119,6 +119,7 @@ header nav .wrapper {
 }
 header nav .wrapper.nav-open {
   right: 0;
+  float: right;
 }
 header nav .wrapper ul li + li {
   margin-top: 60px;
